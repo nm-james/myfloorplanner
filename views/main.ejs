@@ -1,0 +1,219 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/site.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/site.js" ></script>
+<script src="/js/tableLayout.js" ></script>
+
+<a href="/"><img src="/img/logo.png" class="rounded mx-auto d-block" style="width: 10%; margin-top: 1.5%" alt=""></a>
+
+<nav class="navbar navbar-expand justify-content-center">
+  <ul class="navbar-nav justify-content-center" id="list" >
+    <li class="nav-item" style="background-color: none;">
+      <button class='nav-link' type="button" data-bs-toggle="modal" data-bs-target="#myModal" onclick="redefineDate()" style="border: none; padding: 0; background-color: rgba(0,0,0,0)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+          <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+        </svg>
+      </button>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/future">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calendar-date-fill" viewBox="0 0 16 16">
+          <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zm5.402 9.746c.625 0 1.184-.484 1.184-1.18 0-.832-.527-1.23-1.16-1.23-.586 0-1.168.387-1.168 1.21 0 .817.543 1.2 1.144 1.2z"/>
+          <path d="M16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-6.664-1.21c-1.11 0-1.656-.767-1.703-1.407h.683c.043.37.387.82 1.051.82.844 0 1.301-.848 1.305-2.164h-.027c-.153.414-.637.79-1.383.79-.852 0-1.676-.61-1.676-1.77 0-1.137.871-1.809 1.797-1.809 1.172 0 1.953.734 1.953 2.668 0 1.805-.742 2.871-2 2.871zm-2.89-5.435v5.332H5.77V8.079h-.012c-.29.156-.883.52-1.258.777V8.16a12.6 12.6 0 0 1 1.313-.805h.632z"/>
+        </svg>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/database">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-hourglass-split" viewBox="0 0 16 16">
+          <path d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2h-7zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48V8.35zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z"/>
+        </svg>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
+          <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z"/>
+          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+        </svg>
+      </a>
+    </li>
+    
+    <li class="nav-item">
+      <form action="/logout?_method=DELETE" method="POST">
+        <button class='nav-link' type="submit" data-bs-toggle="modal" data-bs-target="#myModal" onclick="redefineDate()" style="border: none; padding: 0; background-color: rgba(0,0,0,0);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+          </svg>
+        </button>
+      </form>
+    </li>
+    
+  </ul>
+</nav>
+
+<h1 id="titleOfPanelSelection">
+  RESERVATIONS
+</h1>
+<div class="" style="width: 100%; margin: 0; display: inline-flex; margin-top: 1%">
+  <div style="width: 10%; display: inline-block;">
+    <ul id="tableResponsiveList" style="margin-left: 50%; margin-top: -7.7%; padding: 0">
+      <li>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#myModal" onclick="redefineDate()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button type="button" onclick="recreateTable(false)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bookmark-dash" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M5.5 6.5A.5.5 0 0 1 6 6h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
+            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button type="button" onclick="renderTableLayout()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-align-top" viewBox="0 0 16 16">
+            <rect width="4" height="12" rx="1" transform="matrix(1 0 0 -1 6 15)"/>
+            <path d="M1.5 2a.5.5 0 0 1 0-1v1zm13-1a.5.5 0 0 1 0 1V1zm-13 0h13v1h-13V1z"/>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button type="button" onclick="recreateTable(true)" id="incomingReservationNavigationButton">
+          <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16" style="display: inline; z-index: 1; position: relative; top: -4%; left: 0%">
+            <path d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849Z"/>
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </div>
+  
+  <div id='tableLayout' class="table-responsive" style="overflow: auto; max-height: 70%; width: 70%; display: inline-block;">
+    
+  </div>
+
+  <div class="statisticHolder" style="width: 11%; height: 11vw; display: inline-block; margin-left: 4.5%;">
+    <div>
+      <div>
+        <p>NUMBER OF BOOKINGS</p>
+        <h1 id="numberOfBookings">NONE</h1>
+      </div>
+    </div>
+    <div>
+      <div id="">
+        <p>NUMBER OF CUSTOMERS</p>
+        <h1 id="numberOfCustomers">NONE</h1>
+      </div>
+    </div>
+    <div>
+      <div id="">
+        <p>MODAL BOOKING TIME</p>
+        <h1 id="modalBookingTimesLabel">NONE</h1>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+<!-- Modal for creating reservations via staff -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">New Reservation</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form class="card text-center" action="/reservation" method="POST" style="border: none;">
+          <div class="row" style="margin: 1%;">
+            <div class="col mb-2 mt-2" style="margin-top: 10%; display: inline;;">
+              <div class="input-group">
+                <span class="input-group-text">Date</span>
+                <input class="form-control" type="date" id="date" name="date">
+              </div>
+            </div>
+
+            <div class="col mb-2 mt-2" style="margin-top: 10%; display: inline;">
+              <div class="input-group">
+                <span class="input-group-text">Time</span>
+                <select class="form-select" id="time" name="time">
+                  <option>11:30AM</option>
+                  <option>11:45AM</option>
+                  <option>12:00PM</option>
+                  <option>12:15PM</option>
+                  <option>12:30PM</option>
+                  <option>12:45PM</option>
+                  <option>1:00PM</option>
+                  <option>1:15PM</option>
+                  <option>1:30PM</option>
+                  <option>1:45PM</option>
+                  <option>2:00PM</option>
+                  <option>2:15PM</option>
+                  <option>2:30PM</option>
+                  <option>2:45PM</option>
+                  <option>3:00PM</option>
+                  <option>5:00PM</option>
+                  <option>5:15PM</option>
+                  <option>5:30PM</option>
+                  <option>5:45PM</option>
+                  <option>6:00PM</option>
+                  <option>6:15PM</option>
+                  <option>6:30PM</option>
+                  <option>6:45PM</option>
+                  <option>7:00PM</option>
+                  <option>7:15PM</option>
+                  <option>7:30PM</option>
+                  <option>7:45PM</option>
+                  <option>8:00PM</option>
+                  <option>8:15PM</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="margin: 1%;">
+            <div class="col mb-2 mt-2" style="margin-top: 10%; display: inline;">
+                <input type="text" class="form-control" id="bookingName" placeholder="Name of Booking" name="bookingName">
+            </div>
+            <div class="col mb-1 mt-2" style="margin-top: 10%; display: inline;">
+                <input type="number" class="form-control" id="phoneNumber" placeholder="Phone Number" name="phoneNumber">
+            </div>
+          </div>
+          <div class="row" style="margin: 1%;">
+            <div class="col mb-1 mt-2" style="margin-top: 10%;">
+              <input type="text" class="form-control" id="email" placeholder="Email" name="email">
+            </div>
+          </div>
+          <div class="row" style="margin: 1%;">
+            <div class="col mb-2 mt-2" style="margin-top: 10%; display: inline;">
+              <div class="input-group">
+                <span class="input-group-text">People</span>
+                <input type="text" class="form-control" id="reservationNumbers" placeholder="Number" name="reservationNumbers">
+              </div>
+            </div>
+            <div class="col mb-1 mt-2" style="margin-top: 10%; display: inline;">
+              <input type="text" class="form-control" id="additionalNotes" placeholder="Additional Notes" name="additionalNotes">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="margin: 3% 4%;">Submit</button>
+        </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>

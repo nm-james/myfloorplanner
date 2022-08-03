@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 350;
+}
+
+body {
+    background-color: rgba(240, 240, 240, 255);
+}
+
+
+#list li {
+    margin: 10% 17%;
+    padding: 7%;
+    background-color: rgb(210, 210, 210);
+    border-radius: 4rem;
+}
+
+#list a {
+    padding: 0%
+}
+
+#tableResponsiveList {
+    list-style-type: none;
+}
+
+#tableResponsiveList li button {
+    width: 42px; 
+    height: 42px;
+    border-radius: 4rem;
+    vertical-align: top; 
+    border: none; 
+    background-color: rgba(210, 210, 210, 255);
+    margin-top: 10px;
+}
+
+#titleOfPanelSelection {
+     margin-left: 5.4%;
+     font-size: 2.5vw;
+     font-weight: 450;
+}
+
+#tableResponsiveList th, .tableHeaderRow {
+    position: sticky; 
+    top: 0;
+}
+::-webkit-input-placeholder {
+    text-align: center;
+}
+
+.row input {
+    text-align: center;
+}
+
+.statisticHolder div {
+    background-color: rgb(70, 125, 236);
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    border-radius: 50%;
+    margin-top: 5%;
+}
+
+
+.statisticHolder div div {
+    background-color: aliceblue;
+    width: 92%; 
+    height: 92%;
+    display: block;
+    position: relative;
+    top: 4%;
+    left: 4%;
+}
+
+.statisticHolder div div h1 {
+    font-size: 2.4vw;
+    position: relative;
+    font-weight: 450;
+    top: 15%;
+}
+
+.statisticHolder div div p {
+    font-size: 0.85vw;
+    position: relative;
+    top: 30%;
+}

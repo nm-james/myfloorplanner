@@ -1,0 +1,14 @@
+
+.settingsList ul {
+    list-style-type: none;
+    padding: .3%;
+
+}
+
+.settingsList li {
+
+}
+
+.settingsList .settingsRow {
+    margin: auto;
+}

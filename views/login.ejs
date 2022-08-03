@@ -1,0 +1,40 @@
+
+<!-- <div >
+  <div class="card-body">
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+  <div class="card-footer text-muted">
+    2 days ago
+  </div>
+</div> -->
+
+<form class="card text-center" style="margin: 8.5% 34%; padding: 4% 2% 7% 2%; background-color: white; border-radius: 3rem; box-shadow: 1.6px 1.6px grey;" action="/login" method="POST">
+  <img src="/img/logo.png" class="card-img-top text-center" style="width: auto; height: 16.5%;">
+  <h5 class="card-title" style="font-size: 3.6rem; font-weight: 375; margin-bottom: 0;">WELCOME</h5>
+  <p class="card-text">PLEASE ENTER YOUR USER DETAILS BELOW</p>
+
+  <% if (messages.error) {%>
+    <div class="alert alert-danger alert-dismissible" role="alert" style="margin-top: 7%;">
+      <%= locals.messages.error %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <% } %>
+
+  <div class="mb-3 mt-3" style="margin-top: 10%;">
+    <input type="text" class="form-control" style="background-color: rgb(230, 230, 230); border: none;" id="username" placeholder="USERNAME" name="username">
+  </div>
+  <div class="mb-3" style="margin-top: 8%;">
+    <input type="password" class="form-control" style="background-color: rgb(230, 230, 230); border: none;" id="password" placeholder="PASSWORD/PIN" name="password">
+  </div>
+  <button type="submit" class="btn btn-primary" style="margin-top: 8%; padding: 2% 44%;">LOGIN</button>
+</form>
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/site.css">
