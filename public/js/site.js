@@ -1,4 +1,4 @@
-const connection = io('wss://amused-ray-gloves.cyclic.app', { transports: ["websocket"] })
+const connection = io('http://amused-ray-gloves.cyclic.app', { transports: ["websocket"] })
 
 // Declare websocket as global, doing this allows for other files to access 'globalConnection' with reference to the websocket
 globalConnection = connection
