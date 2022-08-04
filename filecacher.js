@@ -1,25 +1,25 @@
 const fs = require('fs')
 
 async function checkFiles() {
-    fs.readFile('tmp/data/reservations.json', 'utf8', (err, file) => {
+    fs.readFile('./tmp/data/reservations.json', 'utf8', (err, file) => {
         if (err) {
-            fs.writeFile('tmp/data/reservations.json', '[]', (error)=>{
+            fs.writeFile('./tmp/data/reservations.json', '[]', (error)=>{
                 if (error) throw error;
             })
         }
     })
 
-    fs.readFile('tmp/data/users.json', 'utf8', (err, file) => {
+    fs.readFile('./tmp/data/users.json', 'utf8', (err, file) => {
         if (err) {
-            fs.writeFile('tmp/data/users.json','[]', (error)=>{
+            fs.writeFile('./tmp/data/users.json','[]', (error)=>{
                 if (error) throw error;
             })
         }
     })
 
-    fs.readFile('tmp/data/limitations.json', 'utf8', (err, file) => {
+    fs.readFile('./tmp/data/limitations.json', 'utf8', (err, file) => {
         if (err) {
-            fs.writeFile('tmp/data/limitations.json','[]', (error)=>{
+            fs.writeFile('./tmp/data/limitations.json','[]', (error)=>{
                 if (error) throw error;
             })
         }
@@ -30,7 +30,7 @@ async function checkFiles() {
 
 async function getBookings( keys, wantedValues ) {
     let getBooking = await new Promise( (resolve, err) => {
-        fs.readFile('tmp/data/reservations.json', 'utf8', (err, file) => {
+        fs.readFile('./tmp/data/reservations.json', 'utf8', (err, file) => {
             resolve(JSON.parse(file || []))
         })
     })
@@ -55,7 +55,7 @@ async function getBookings( keys, wantedValues ) {
 }
 
 async function saveBookings( newBookings ) {
-    fs.writeFile('tmp/data/reservations.json', JSON.stringify(newBookings), (error)=>{
+    fs.writeFile('./tmp/data/reservations.json', JSON.stringify(newBookings), (error)=>{
         if (error) throw error;
     })
 }
