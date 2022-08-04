@@ -109,7 +109,7 @@ app.use(methodOverride('_method'));
 const server = require('http').Server(app);
 const io = require('socket.io')(server, {
     cors: {
-        origin: "https://amused-ray-gloves.cyclic.app:3000",
+        origin: "https://amused-ray-gloves.cyclic.app",
         methods: ["GET", "POST"],
         transports: ['websocket', 'polling'],
         credentials: true
