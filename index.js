@@ -158,7 +158,12 @@ function checkReservationData(req, res, next) {
 app.post('/reservation', checkReservationData, async (req, res) => {
     let data = req.body
     //await database.saveReservation( data )
-    //updateReservationData( users, data.todaysDate )    
+    //updateReservationData( users, data.todaysDate )
+    if (req.isAuthenticated()) {
+        return res.redirect('/')
+    } else {
+        return res.redirect('/reservation')
+    }
 })
 
 app.post('/login', isSignedIn, passport.authenticate('local', {
