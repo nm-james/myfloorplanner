@@ -155,7 +155,7 @@ function checkReservationData(req, res, next) {
         next()
     }
 }
-app.post('/reservation', checkReservationData, async (req, res) => {
+app.post('/reservation', async (req, res) => {
     let data = req.body
     await database.saveReservation( data )
     updateReservationData( users, data.todaysDate )    
