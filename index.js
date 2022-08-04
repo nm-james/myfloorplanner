@@ -107,15 +107,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(methodOverride('_method'));
 
 const server = require('http').Server(app);
-const io = require('socket.io')(server, {
-    cors: {
-        origin: "https://amused-ray-gloves.cyclic.app",
-        methods: ["GET", "POST"],
-        transports: ['websocket', 'polling'],
-        credentials: true
-    },
-    allowEIO3: true
-});
+const io = require('socket.io')(server);
 
 
 app.get('/reservation', (req, res) => {
