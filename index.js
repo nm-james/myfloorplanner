@@ -109,6 +109,9 @@ app.use(methodOverride('_method'));
 const server = require('http').Server(app);
 const io = require('socket.io')(server, {
     transports: ['polling'],
+    cors: {
+        methods: ["GET", "POST"]
+    }
 });
 
 
