@@ -1,4 +1,4 @@
-const connection = io('localhost:3000', {transports: ['websocket']})
+const connection = io('http://localhost:3000', {transports: ['websocket']})
 
 // Declare websocket as global, doing this allows for other files to access 'globalConnection' with reference to the websocket
 globalConnection = connection
