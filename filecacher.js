@@ -104,12 +104,12 @@ async function saveReservationByDateAndName( data )
 {
     let bookings = await getBookings()
     let newBooking = data
-    //let newID = Object.keys(bookings).length
-    //newBooking.id = newID + 1
-    //newBooking.hasArrived = 0
-    //newBooking.hasConfirmed = 0
+    let newID = Object.keys(bookings).length
+    newBooking.id = newID + 1
+    newBooking.hasArrived = 0
+    newBooking.hasConfirmed = 0
 
-    //bookings[newID] = newBooking
+    bookings[newID] = newBooking
     //saveBookings( bookings )
 }
 
