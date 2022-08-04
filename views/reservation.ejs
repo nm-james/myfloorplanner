@@ -58,7 +58,7 @@
     </div>
     <div class="row" style="margin: 1%;">
       <div class="col mb-2 mt-2" style="margin-top: 10%; display: inline;">
-          <input type="text" class="form-control" id="bookingName" placeholder="Name of Booking" name="bookingName">
+          <input type="text" class="form-control" id="customerName" placeholder="Name of Booking" name="customerName">
       </div>
       <div class="col mb-1 mt-2" style="margin-top: 10%; display: inline;">
           <input type="number" class="form-control" id="phoneNumber" placeholder="Phone Number" name="phoneNumber">
@@ -72,7 +72,7 @@
     <div class="row" style="margin: 1%;">
         <div class="input-group" style=" width: 25%; height: 25%; margin-top: 1.05%;">
           <span class="input-group-text">People</span>
-          <select class="form-control" id="reservationNumbers" placeholder="Number" name="reservationNumbers">
+          <select class="form-control" id="reservationNumbers" placeholder="Number" name="peopleSize">
             <% for (let i = 1; i < 19; i++) { %>
               <option><%=i%></option>
             <%}%>
