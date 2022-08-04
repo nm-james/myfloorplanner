@@ -179,24 +179,20 @@ app.delete('/logout', isNotSignedIn, (req, res) => {
     res.redirect('/login')
 })
 
-function updateReservationData( users, date, currentSOC ) {
-    let allReservations = database.getReservations( date )
-    allReservations.then((res) => {
-        var databaseRes = database.getReservationsViaConfirmation( 0 )
-        databaseRes.then((newResult) => {
-            users.forEach(soc => {
-                if (soc != currentSOC) {
-                    soc.emit('requestReservationData', [res, newResult, date])
-                }
-            });
-        })
-    })
+async function updateReservationData( users, date, currentSOC ) {
+    var allReservations = await database.getReservations( date )
+    var databaseRes = await database.getReservationsViaConfirmation( 0 )
+    users.forEach(soc => {
+        if (soc != currentSOC) {
+            soc.emit('requestReservationData', [allReservations, databaseRes, date])
+        }
+    });
 }
 function getSettingsData() {
     var promise = new Promise((res, rej) => {
-        fs.readFile('data/settings.json', 'utf8', (err, file) => {
+        fs.readFile('tmp/data/settings.json', 'utf8', (err, file) => {
             if (err) {
-                fs.writeFile('data/settings.json', JSON.stringify(settings), (error)=>{
+                fs.writeFile('tmp/data/settings.json', JSON.stringify(settings), (error)=>{
                     if (error) throw error;
                 })
                 res(settings)
@@ -207,6 +203,7 @@ function getSettingsData() {
     })
     return promise
 }
+
 io.on('connection', function(socket) {
     users.push(socket);
     console.log(socket)
