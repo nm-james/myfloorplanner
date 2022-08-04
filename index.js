@@ -152,7 +152,6 @@ function checkReservationData(req, res, next) {
             return res.redirect('/reservation')
         }
     } else {
-        data.todaysDate = null
         next()
     }
 }
