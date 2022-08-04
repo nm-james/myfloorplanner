@@ -30,7 +30,7 @@ async function checkFiles() {
 
 async function getBookings( keys, wantedValues ) {
     let getBooking = await new Promise( (resolve, err) => {
-        fs.readFile('data/reservations.json', 'utf8', (err, file) => {
+        fs.readFile('tmp/data/reservations.json', 'utf8', (err, file) => {
             resolve(JSON.parse(file || []))
         })
     })
