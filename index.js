@@ -110,7 +110,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server, {
     transports: ['polling'],
     cors: {
-        origin: "https://amused-ray-gloves.cyclic.app/",
+        origin: "https://amused-ray-gloves.cyclic.app",
         methods: ["GET", "POST"]
     }
 });
