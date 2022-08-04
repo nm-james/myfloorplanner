@@ -239,6 +239,7 @@ io.on('connection', function(socket) {
         updateReservationData( users, reservationData.date, socket )
     })  
     socket.on('disconnect', function (data) {
+        console.log('rip!')
        let indexOfUser = users.indexOf(socket)
        if (indexOfUser !== -1) {
         users.splice(indexOfUser, 1)
