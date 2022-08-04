@@ -55,7 +55,7 @@ async function getBookings( keys, wantedValues ) {
 }
 
 function saveBookings( newBookings ) {
-    fs.writeFile('data/reservations.json', JSON.stringify(newBookings), (error)=>{
+    fs.writeFile('tmp/data/reservations.json', JSON.stringify(newBookings), (error)=>{
         if (error) throw error;
     })
 }
