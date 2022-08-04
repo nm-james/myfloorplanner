@@ -88,7 +88,8 @@ initializePassport(
     }
 );
 
-const database = require("./database");
+const database = require("./filecacher");
+database.init()
 let users = []
 
 app.set('view-engine', 'ejs');
@@ -135,7 +136,7 @@ app.get('/admin', isNotSignedIn, (req, res) => {
 
 function checkReservationData(req, res, next) {
     let data = req.body
-    if (data.date === '' || data.time === '' || data.bookingName === '' || data.phoneNumber === '' || data.reservationNumbers === '' || data.email === '') {
+    if (data.date === '' || data.time === '' || data.customerName === '' || data.phoneNumber === '' || data.peopleSize === '' || data.email === '') {
         data.result = 'Error'
         data.type = 'alert'
 
@@ -145,6 +146,7 @@ function checkReservationData(req, res, next) {
             return res.redirect('/reservation')
         }
     } else {
+        data.todaysDate = null
         next()
     }
 }
@@ -211,28 +213,23 @@ io.on('connection', function(socket) {
     socket.on('requestReservationData', async function( data ) {
         let reservationData = {}
         if (data[0] && typeof data[1] == 'number') {
-            reservationData = database.getReservationsLimited( data[0], data[1] )
+            reservationData = await database.getReservationsLimited( data[0], data[1] )
         } else {
-            reservationData = database.getReservations( data[0] )
+            reservationData = await database.getReservations( data[0] )
         }
-        reservationData.then((res) => {
-            if (data[2]) {
-                var databaseRes = database.getReservationsViaConfirmation( 0 )
-                databaseRes.then((newResult) => {
-                    socket.emit('requestReservationData', [res, newResult, data[0]])
-                })
-            } else {
-                socket.emit('requestReservationData', [res])
-            }
-        })
+        if (data[2]) {
+            var databaseRes = await database.getReservationsViaConfirmation( 0 )
+
+            socket.emit('requestReservationData', [reservationData, databaseRes, data[0]])
+        } else {
+            socket.emit('requestReservationData', [reservationData])
+        }
     })
-    socket.on('changeArrivalStatus', function(data){
+    socket.on('changeArrivalStatus', async function(data){
         let reservationID = data[0]
-        let reservationData = database.getReservationViaID( reservationID )
-        reservationData.then((res) => {
-            database.changeReservationStatus( res.id, res.hasArrived )
-            updateReservationData( users, res.date, socket )
-        })
+        let reservationData = await database.getReservationViaID( reservationID )
+        await database.changeReservationStatus( reservationData.id, reservationData.hasArrived )
+        updateReservationData( users, reservationData.date, socket )
     })  
     socket.on('disconnect', function (data) {
        let indexOfUser = users.indexOf(socket)
