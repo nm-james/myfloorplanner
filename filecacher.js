@@ -110,7 +110,7 @@ async function saveReservationByDateAndName( data )
     newBooking.hasConfirmed = 0
 
     bookings[newID] = newBooking
-    //saveBookings( bookings )
+    saveBookings( bookings )
 }
 
 async function updateReservationArrival( id, hasArrived )
