@@ -54,7 +54,7 @@ async function getBookings( keys, wantedValues ) {
     return newBookings
 }
 
-function saveBookings( newBookings ) {
+async function saveBookings( newBookings ) {
     fs.writeFile('tmp/data/reservations.json', JSON.stringify(newBookings), (error)=>{
         if (error) throw error;
     })
@@ -110,7 +110,7 @@ async function saveReservationByDateAndName( data )
     newBooking.hasConfirmed = 0
 
     bookings[newID] = newBooking
-    saveBookings( bookings )
+    await saveBookings( bookings )
 }
 
 async function updateReservationArrival( id, hasArrived )
@@ -123,7 +123,7 @@ async function updateReservationArrival( id, hasArrived )
     } else {
         bookings[newID].hasArrived = 1
     }
-    saveBookings( bookings )
+    await saveBookings( bookings )
 }
 
 async function updateReservationConfirmation( id, hasConfirmed )
@@ -135,7 +135,7 @@ async function updateReservationConfirmation( id, hasConfirmed )
     } else {
         bookings.splice(newID, 1)
     }
-    saveBookings( bookings )
+    await saveBookings( bookings )
 }
 
 async function initializeSQL() {
