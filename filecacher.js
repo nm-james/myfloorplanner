@@ -1,25 +1,25 @@
 const fs = require('fs')
 
 async function checkFiles() {
-    fs.readFile('data/reservations.json', 'utf8', (err, file) => {
+    fs.readFile('tmp/data/reservations.json', 'utf8', (err, file) => {
         if (err) {
-            fs.writeFile('data/reservations.json', '[]', (error)=>{
+            fs.writeFile('tmp/data/reservations.json', '[]', (error)=>{
                 if (error) throw error;
             })
         }
     })
 
-    fs.readFile('data/users.json', 'utf8', (err, file) => {
+    fs.readFile('tmp/data/users.json', 'utf8', (err, file) => {
         if (err) {
-            fs.writeFile('data/users.json','[]', (error)=>{
+            fs.writeFile('tmp/data/users.json','[]', (error)=>{
                 if (error) throw error;
             })
         }
     })
 
-    fs.readFile('data/limitations.json', 'utf8', (err, file) => {
+    fs.readFile('tmp/data/limitations.json', 'utf8', (err, file) => {
         if (err) {
-            fs.writeFile('data/limitations.json','[]', (error)=>{
+            fs.writeFile('tmp/data/limitations.json','[]', (error)=>{
                 if (error) throw error;
             })
         }
