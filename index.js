@@ -209,7 +209,7 @@ function getSettingsData() {
 }
 io.on('connection', function(socket) {
     users.push(socket);
-    
+    console.log(socket)
     socket.on('changeConfirmationStatus', function(data) {
         let id = data[0]
         let valueOfChange = data[1]
